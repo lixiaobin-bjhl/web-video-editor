@@ -50,3 +50,42 @@ body {
     border-right: 1px solid var(--panel-stroke);
     box-sizing: border-box;
 }
+
+html,body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    font-size: medium;
+}
+#container  {
+    left:10px;
+    top:10px;
+    right:10px;
+    bottom:10px;
+    position:absolute;
+    display:flex;
+    overflow:hidden;
+}
+.app
+{
+    display:flex;
+    flex-direction: column;
+    flex-grow:1;
+}
+
+.toolbar
+{
+    margin:2px;
+    display: flex;
+    align-items:center;
+}
+
+.contents
+{
+    display:flex;
+    flex-grow:1;
+    position:relative;
+    border:1px solid gray;
+}

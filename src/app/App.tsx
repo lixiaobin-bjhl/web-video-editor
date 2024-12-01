@@ -1,6 +1,7 @@
 import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
 import 'flexlayout-react/style/light.css';
 import { JsonView } from './JsonView';
+import { MdHeight } from 'react-icons/md';
 
 var json: IJsonModel = {
     global: { "tabEnablePopout": false },
@@ -25,7 +26,6 @@ var json: IJsonModel = {
     ],
     layout: {
         type: "row",
-        weight: 70,
         children: [
             {
                 type: "row",
@@ -33,7 +33,7 @@ var json: IJsonModel = {
                 children: [
                     {
                         type: "row",
-                        weight: 100,
+                        weight: 70,
                         children: [
                             {
                                 type: "tabset",
@@ -118,10 +118,19 @@ function App() {
     }
 
     return (
-        <Layout
-            model={model}
-            factory={factory} />
-    );
+        <div id="container">
+            <div className="app">
+                <div className="toolbar secondary-text-color" dir="ltr">
+                    head area  web video editor
+                </div>
+                <div className="contents">
+                    <Layout
+                        model={model}
+                        factory={factory} />
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default App;
