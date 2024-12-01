@@ -49,11 +49,10 @@ export const Editor = observer(() => {
     }, []);
     return (
         <div className="grid grid-rows-[500px_1fr_20px] grid-cols-[72px_300px_1fr_250px] h-[100svh]">
-
-            <div className="tile row-span-2 flex flex-col">
+            <div className="tile row-span-2 flex flex-col" id="side-nav">
                 <Menu />
             </div>
-            <div className="row-span-2 flex flex-col overflow-scroll">
+            <div className="row-span-2 flex flex-col overflow-scroll" id="resource-panel">
                 <Resources />
             </div>
             <div id="grid-canvas-container" className="col-start-3 bg-slate-100 flex justify-center items-center">

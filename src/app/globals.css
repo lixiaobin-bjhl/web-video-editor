@@ -8,9 +8,16 @@ body {
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+    --panel-back: #141629;
+    --panel-stroke: #222544;
+    --main-back: #070a1b;
+    --main-text-color: #fff;
+    --secondary-text-color: #a0a5d0;
+    --input-color: #22233e;
+    --accent-color: #166ef1;
+    --button-hover: #262746;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -22,8 +29,24 @@ body {
 } */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    background: var(--main-back);
+}
+
+.side-nav {
+    /* background: var(--panel-back); */
+}
+.secondary-text-color{
+    color: var(--secondary-text-color);
+}
+
+#side-nav{
+    background-color: var(--panel-back);
+    border-right: 1px solid var(--panel-stroke);
+    box-shadow: 1px 0px 0px #000000;
+}
+
+#resource-panel {
+    background: var(--panel-back);
+    border-right: 1px solid var(--panel-stroke);
+    box-sizing: border-box;
 }

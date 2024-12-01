@@ -18,7 +18,7 @@ export const Menu = observer(() => {
     const store = React.useContext(StoreContext);
 
     return (
-        <ul className="bg-white h-full">
+        <ul className="side-nav h-full">
             {MENU_OPTIONS.map((option) => {
                 const isSelected = store.selectedMenuOption === option.name;
                 return (
@@ -32,12 +32,10 @@ export const Menu = observer(() => {
                         >
                             <option.icon
                                 size="20"
-                                color={
-                                    isSelected ? "#000" : "#444"
-                                }
+                                color={isSelected ? "var(--secondary-text-color)" : "var(--secondary-text-color)"}
                             />
                             <div
-                                className={`text-[0.75rem] hover:text-black ${isSelected ? "text-black" : "text-slate-600"}`}
+                                className={`text-[0.75rem] hover:var(--secondary-text-color) ${isSelected ? "secondary-text-color" : "secondary-text-color"} `}
                             >
                                 {option.name}
                             </div>
@@ -45,7 +43,7 @@ export const Menu = observer(() => {
                     </li>
                 );
             })}
-        </ul>
+        </ul >
     );
 });
 
