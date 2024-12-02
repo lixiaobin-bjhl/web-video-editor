@@ -14,6 +14,10 @@ import React, { useEffect, useState } from "react";
 import { MainCanvas } from '@/components/MainCanvas';
 import { observer } from "mobx-react";
 
+import {
+    MdDownload,
+} from "react-icons/md";
+
 import "@/utils/fabric-utils";
 
 var json: IJsonModel = {
@@ -148,7 +152,14 @@ export const App = () => {
             <div id="container">
                 <div className="app">
                     <div className="header secondary-text-color" dir="ltr">
-                        head area  web video editor
+                        head area  web video editor <MdDownload className='cursor-pointer' fontSize="25" onClick={() => {
+                            store.handleSeek(0);
+                            store.setSelectedElement(null);
+                            setTimeout(() => {
+                                store.setPlaying(true);
+                                store.saveCanvasToVideoWithAudio();
+                            }, 1000);
+                        }}></MdDownload>
                     </div>
                     <div className="contents">
                         <Layout
@@ -157,6 +168,6 @@ export const App = () => {
                     </div>
                 </div>
             </div>
-        </StoreContext.Provider>
+        </StoreContext.Provider >
     )
 }
