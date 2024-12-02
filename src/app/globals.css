@@ -75,7 +75,7 @@ html,body
     flex-grow:1;
 }
 
-.toolbar
+.header
 {
     margin:2px;
     display: flex;

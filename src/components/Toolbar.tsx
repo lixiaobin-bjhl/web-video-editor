@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 import { Store } from "@/store/Store";
 
-export const Menu = observer(() => {
+export const Toolbar = observer(() => {
     const store = React.useContext(StoreContext);
 
     return (

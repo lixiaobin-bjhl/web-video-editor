@@ -6,7 +6,7 @@ import { StoreContext } from "@/store";
 import { observer } from "mobx-react";
 import { Resources } from "./Resources";
 import { ElementsPanel } from "./panels/ElementsPanel";
-import { Menu } from "./Menu";
+import { Toolbar } from "./Toolbar";
 import { TimeLine } from "./TimeLine";
 import { Store } from "@/store/Store";
 import "@/utils/fabric-utils";
@@ -24,33 +24,33 @@ export const Editor = observer(() => {
     const store = React.useContext(StoreContext);
 
     useEffect(() => {
-        const canvas = new fabric.Canvas("canvas", {
-            height: 500,
-            width: 800,
-            backgroundColor: "#ededed",
-        });
-        fabric.Object.prototype.transparentCorners = false;
-        fabric.Object.prototype.cornerColor = "#00a0f5";
-        fabric.Object.prototype.cornerStyle = "circle";
-        fabric.Object.prototype.cornerStrokeColor = "#0063d8";
-        fabric.Object.prototype.cornerSize = 10;
-        // canvas mouse down without target should deselect active object
-        canvas.on("mouse:down", function (e) {
-            if (!e.target) {
-                store.setSelectedElement(null);
-            }
-        });
+        // const canvas = new fabric.Canvas("canvas", {
+        //     height: 500,
+        //     width: 800,
+        //     backgroundColor: "#ededed",
+        // });
+        // fabric.Object.prototype.transparentCorners = false;
+        // fabric.Object.prototype.cornerColor = "#00a0f5";
+        // fabric.Object.prototype.cornerStyle = "circle";
+        // fabric.Object.prototype.cornerStrokeColor = "#0063d8";
+        // fabric.Object.prototype.cornerSize = 10;
+        // // canvas mouse down without target should deselect active object
+        // canvas.on("mouse:down", function (e) {
+        //     if (!e.target) {
+        //         store.setSelectedElement(null);
+        //     }
+        // });
 
-        store.setCanvas(canvas);
-        fabric.util.requestAnimFrame(function render() {
-            canvas.renderAll();
-            fabric.util.requestAnimFrame(render);
-        });
+        // store.setCanvas(canvas);
+        // fabric.util.requestAnimFrame(function render() {
+        //     canvas.renderAll();
+        //     fabric.util.requestAnimFrame(render);
+        // });
     }, []);
     return (
         <div className="grid grid-rows-[500px_1fr_20px] grid-cols-[72px_300px_1fr_250px] h-[100svh]">
             <div className="tile row-span-2 flex flex-col" id="side-nav">
-                <Menu />
+                <Toolbar />
             </div>
             <div className="row-span-2 flex flex-col overflow-scroll" id="resource-panel">
                 <Resources />

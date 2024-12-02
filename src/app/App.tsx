@@ -1,7 +1,20 @@
+
+"use client";
+
 import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
 import 'flexlayout-react/style/light.css';
 import { JsonView } from './JsonView';
-import { MdHeight } from 'react-icons/md';
+import { Toolbar } from "../components/Toolbar";
+import { Resources } from '@/components/Resources';
+import { TimeLine } from "@/components/TimeLine";
+import { StoreContext } from "@/store";
+import { ElementsPanel } from '@/components/panels/ElementsPanel';
+import { Store } from "@/store/Store";
+import React, { useEffect, useState } from "react";
+import { MainCanvas } from '@/components/MainCanvas';
+import { observer } from "mobx-react";
+
+import "@/utils/fabric-utils";
 
 var json: IJsonModel = {
     global: { "tabEnablePopout": false },
@@ -42,7 +55,7 @@ var json: IJsonModel = {
                                     {
                                         type: "tab",
                                         name: "工具栏",
-                                        component: "button",
+                                        component: "toolbar",
                                     }
                                 ]
                             },
@@ -53,7 +66,7 @@ var json: IJsonModel = {
                                     {
                                         type: "tab",
                                         name: "编辑区",
-                                        component: "button",
+                                        component: "mainCanvas",
                                     }
                                 ]
                             },
@@ -81,7 +94,7 @@ var json: IJsonModel = {
                                     {
                                         type: "tab",
                                         name: "层",
-                                        component: "button",
+                                        component: "elementsPanel",
                                     }
                                 ]
                             },
@@ -92,7 +105,7 @@ var json: IJsonModel = {
                                     {
                                         type: "tab",
                                         name: "时间轴",
-                                        component: "button",
+                                        component: "timeLine",
                                     }
                                 ]
                             }
@@ -106,31 +119,40 @@ var json: IJsonModel = {
 
 const model = Model.fromJson(json);
 
-function App() {
-
+export const App = () => {
+    const [store] = useState(new Store());
     const factory = (node: TabNode) => {
         var component = node.getComponent();
         if (component === "button") {
             return <button>{node.getName()}haha1</button>;
         } else if (component === "json") {
             return (<JsonView model={model} />);
+        } else if (component === "toolbar") {
+            return (
+                <div className='grid grid-flow-col'><Toolbar /><Resources /></div >
+            );
+        } else if (component === "mainCanvas") {
+            return (<MainCanvas />);
+        } else if (component === "timeLine") {
+            return (<TimeLine />);
+        } else if (component === "elementsPanel") {
+            return (<ElementsPanel />);
         }
     }
-
     return (
-        <div id="container">
-            <div className="app">
-                <div className="toolbar secondary-text-color" dir="ltr">
-                    head area  web video editor
-                </div>
-                <div className="contents">
-                    <Layout
-                        model={model}
-                        factory={factory} />
+        <StoreContext.Provider value={store}>
+            <div id="container">
+                <div className="app">
+                    <div className="header secondary-text-color" dir="ltr">
+                        head area  web video editor
+                    </div>
+                    <div className="contents">
+                        <Layout
+                            model={model}
+                            factory={factory} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </StoreContext.Provider>
     )
 }
-
-export default App;

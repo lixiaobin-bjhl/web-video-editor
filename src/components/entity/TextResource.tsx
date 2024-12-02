@@ -24,7 +24,7 @@ export const TextResource = observer(
                     {sampleText}
                 </div>
                 <button
-                    className="h-[32px] w-[32px] rounded z-10 text-white font-bold py-1 flex items-center justify-center"
+                    className="h-[32px] w-[32px] rounded z-10 font-bold py-1 flex items-center justify-center"
                     onClick={() =>
                         store.addText({
                             text: sampleText,
