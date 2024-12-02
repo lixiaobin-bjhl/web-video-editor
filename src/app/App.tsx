@@ -3,7 +3,7 @@
 
 import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
 import 'flexlayout-react/style/light.css';
-import { JsonView } from './JsonView';
+import { LayoutJsonView, VideoJsonView } from './JsonView';
 import { Toolbar } from "../components/Toolbar";
 import { Resources } from '@/components/Resources';
 import { TimeLine } from "@/components/TimeLine";
@@ -27,12 +27,14 @@ var json: IJsonModel = {
                 {
                     "type": "tab",
                     "name": "布局JSON",
-                    "component": "json"
+                    "component": "layoutJson",
+                    "enableClose": false
                 },
                 {
                     "type": "tab",
                     "name": "视频JSON",
-                    "component": "json"
+                    "component": "videoJson",
+                    "enableClose": false
                 }
             ]
         }
@@ -125,8 +127,10 @@ export const App = () => {
         var component = node.getComponent();
         if (component === "button") {
             return <button>{node.getName()}haha1</button>;
-        } else if (component === "json") {
-            return (<JsonView model={model} />);
+        } else if (component === "layoutJson") {
+            return (<LayoutJsonView model={model} />);
+        } else if (component === "videoJson") {
+            return (<VideoJsonView model={model} />);
         } else if (component === "toolbar") {
             return (
                 <div className='grid grid-flow-col'><Toolbar /><Resources /></div >
