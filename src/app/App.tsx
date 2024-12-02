@@ -6,6 +6,7 @@ import 'flexlayout-react/style/light.css';
 import { LayoutJsonView, VideoJsonView } from './JsonView';
 import { Toolbar } from "../components/Toolbar";
 import { Resources } from '@/components/Resources';
+import { Property } from '@/components/Property';
 import { TimeLine } from "@/components/TimeLine";
 import { StoreContext } from "@/store";
 import { ElementsPanel } from '@/components/panels/ElementsPanel';
@@ -83,7 +84,7 @@ var json: IJsonModel = {
                                     {
                                         type: "tab",
                                         name: "属性区",
-                                        component: "button",
+                                        component: "property",
                                     }
                                 ]
                             }
@@ -99,7 +100,7 @@ var json: IJsonModel = {
                                 children: [
                                     {
                                         type: "tab",
-                                        name: "层",
+                                        name: "图层",
                                         component: "elementsPanel",
                                     }
                                 ]
@@ -145,6 +146,8 @@ export const App = () => {
             return (<TimeLine />);
         } else if (component === "elementsPanel") {
             return (<ElementsPanel />);
+        } else if (component === "property") {
+            return (<Property />);
         }
     }
     return (
