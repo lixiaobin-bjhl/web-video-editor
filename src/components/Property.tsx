@@ -108,7 +108,7 @@ export const Property = observer((props: EffectResourceProps) => {
                     >
                         <ColorPicker
                             onChangeComplete={color => store.setBackgroundColor(color.toHexString())}
-                            defaultValue={store.backgroundColor} showText />
+                            value={store.backgroundColor} showText />
                         <Space size={[8, 16]} wrap style={{ marginTop: 16 }}>
                             {quickColors.map((qc, index) => (
                                 <Tooltip title={`Click to select ${qc}`} key={index}>
