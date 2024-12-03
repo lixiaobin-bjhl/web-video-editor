@@ -2,22 +2,31 @@
 import React, { useRef, useEffect } from "react";
 import { StoreContext } from "@/store";
 import { observer } from "mobx-react";
-import { Input, Form, InputNumber, ColorPicker, Radio } from "antd";
-import { Color } from "antd/es/color-picker";
+import { Input, Form, InputNumber, ColorPicker, Radio, Tooltip, Space } from "antd";
+import classNames from 'classnames';
 
 export const Property = observer((props: EffectResourceProps) => {
     const store = React.useContext(StoreContext);
     const formRef = useRef();
+    // 定义20个常用颜色
+    const quickColors = [
+        '#ffffff', // 白色
+        '#ff4d4f', '#fa8c16', '#fadb14', '#a0d911', '#52c41a',
+        '#13c2c2', '#3ca9fa', '#2f54eb', '#722ed1', '#eb2f96',
+        '#ffcc00', '#b7eb8f', '#87d068', '#1890ff', '#40a9ff',
+        '#2db7f5', '#13c2c2', '#87d068', '#000000'  // 黑色
+    ];
     useEffect(() => {
-        if (formRef.current && store.selectedElement) {
+        if (formRef.current) {
             formRef.current.setFieldsValue({
-                id: store.selectedElement.id,
-                name: store.selectedElement.name,
-                x: store.selectedElement.placement?.x || '',
-                y: store.selectedElement.placement?.y || ''
+                id: store.selectedElement?.id,
+                name: store.selectedElement?.name,
+                x: store.selectedElement?.placement?.x || '',
+                y: store.selectedElement?.placement?.y || '',
+                backgroundColor: store.backgroundColor
             });
         }
-    }, [store.selectedElement]);
+    }, [store.selectedElement, store.backgroundColor]);
     const handleElementPropertyInputChange = (store, key, subKey) => (e) => {
         let value = e.target.value;
         if (!store.selectedElement) return;
@@ -44,7 +53,7 @@ export const Property = observer((props: EffectResourceProps) => {
                 name: store.selectedElement?.name || '',
                 x: store.selectedElement?.placement?.x || '',
                 y: store.selectedElement?.placement?.y || '',
-                backgroundColor: store.backgroundColor,
+                backgroundColor: store.backgroundColor || '',
                 maxTime: store.maxTime,
                 fps: store.fps,
                 selectedVideoFormat: store.selectedVideoFormat,
@@ -97,7 +106,20 @@ export const Property = observer((props: EffectResourceProps) => {
                         label="背景颜色"
                         name="backgroundColor"
                     >
-                        <ColorPicker onChangeComplete={color => store.setBackgroundColor(color.toHexString())} defaultValue="{store.backgroundColor}" showText />
+                        <ColorPicker
+                            onChangeComplete={color => store.setBackgroundColor(color.toHexString())}
+                            defaultValue={store.backgroundColor} showText />
+                        <Space size={[8, 16]} wrap style={{ marginTop: 16 }}>
+                            {quickColors.map((qc, index) => (
+                                <Tooltip title={`Click to select ${qc}`} key={index}>
+                                    <span
+                                        className={classNames('color-block', { selected: qc === store.backgroundColor })}
+                                        onClick={() => store.setBackgroundColor(qc)}
+                                        style={{ backgroundColor: qc, cursor: 'pointer', width: 24, height: 24, display: 'inline-block' }}
+                                    />
+                                </Tooltip>
+                            ))}
+                        </Space>
                     </Form.Item>
                     <Form.Item
                         label="画布宽度"

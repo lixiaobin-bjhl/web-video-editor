@@ -95,7 +95,7 @@ export const SlideAnimation = observer(
             <div className="flex flex-col w-full items-start">
                 {/* duration */}
                 <div className="flex flex-row items-center justify-between my-1">
-                    <div className="text-white text-xs">Duration(s)</div>
+                    <div className="text-white text-xs">动画时间(s)</div>
                     <input
                         className="bg-slate-100 text-black rounded-lg px-2 py-1 ml-2 w-16 text-xs"
                         type="number"
@@ -115,7 +115,7 @@ export const SlideAnimation = observer(
                     />
                 </div>
                 <div className="flex flex-row items-center justify-between my-1">
-                    <div className="text-white text-xs">Direction</div>
+                    <div className="text-white text-xs">方向</div>
                     <select
                         className="bg-slate-100 text-black rounded-lg px-2 py-1 ml-2 w-16 text-xs"
                         value={props.animation.properties.direction}
