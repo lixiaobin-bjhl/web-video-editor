@@ -9,3 +9,13 @@
 * Ant design
 * Flexlayout-react
 
+## 效果截图
+![alt text](image.png)
+
+## TODO
+
+* 支持更多动画
+* 接入AI能力
+* 支持服务端渲染
+* 完善UE
+
