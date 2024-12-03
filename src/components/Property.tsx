@@ -2,7 +2,8 @@
 import React, { useRef, useEffect } from "react";
 import { StoreContext } from "@/store";
 import { observer } from "mobx-react";
-import { Input, Form } from "antd";
+import { Input, Form, InputNumber, ColorPicker, Radio } from "antd";
+import { Color } from "antd/es/color-picker";
 
 export const Property = observer((props: EffectResourceProps) => {
     const store = React.useContext(StoreContext);
@@ -17,56 +18,113 @@ export const Property = observer((props: EffectResourceProps) => {
             });
         }
     }, [store.selectedElement]);
-    const handleInputChange = (store, key, subKey) => (e) => {
+    const handleElementPropertyInputChange = (store, key, subKey) => (e) => {
+        let value = e.target.value;
         if (!store.selectedElement) return;
         if (subKey) {
             // 如果存在子键，则更新嵌套对象的值
             store.selectedElement[key] = {
                 ...store.selectedElement[key],
-                [subKey]: e.target.value,
+                [subKey]: +e.target.value,
             };
         } else {
             // 否则直接更新对象的值
             store.selectedElement[key] = e.target.value;
         }
+        store.updateEditorElement(store.selectedElement);
     };
     return (
         <Form
             ref={formRef}
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 20 }}
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 18 }}
             className="p-5"
             initialValues={{
                 id: store.selectedElement?.id || '',
                 name: store.selectedElement?.name || '',
                 x: store.selectedElement?.placement?.x || '',
-                y: store.selectedElement?.placement?.y || ''
+                y: store.selectedElement?.placement?.y || '',
+                backgroundColor: store.backgroundColor,
+                maxTime: store.maxTime,
+                fps: store.fps,
+                selectedVideoFormat: store.selectedVideoFormat,
+                canvasHeight: store.canvasHeight,
+                canvasWidth: store.canvasWidth
             }}
         >
-            <Form.Item
-                label="ID"
-                name="id"
-            >
-                <Input disabled />
-            </Form.Item>
-            <Form.Item
-                label="名称"
-                name="name"
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="X"
-                name="x"
-            >
-                <Input placeholder="请输入水平位置" onChange={handleInputChange(store, 'placement', 'x')} />
-            </Form.Item>
-            <Form.Item
-                label="Y"
-                name="y"
-            >
-                <Input placeholder="请输入垂直位置" />
-            </Form.Item>
+            {store.selectedElement ? (
+                <>
+                    <Form.Item
+                        label="控件ID"
+                        name="id"
+                    >
+                        <Input disabled />
+                    </Form.Item>
+                    <Form.Item
+                        label="图层名称"
+                        name="name"
+                    >
+                        <Input placeholder="请输入图层名称" onChange={handleElementPropertyInputChange(store, 'name', null)} />
+                    </Form.Item>
+                    <Form.Item
+                        label="X坐标"
+                        name="x"
+                    >
+                        <Input placeholder="请输入水平位置" onChange={handleElementPropertyInputChange(store, 'placement', 'x')} />
+                    </Form.Item>
+                    <Form.Item
+                        label="Y坐标"
+                        name="y"
+                    >
+                        <Input placeholder="请输入垂直位置" onChange={handleElementPropertyInputChange(store, 'placement', 'y')} />
+                    </Form.Item>
+                </>
+            ) : (
+                <>
+                    <Form.Item
+                        label="最大时长"
+                        name="maxTime"
+                    >
+                        <Input placeholder="请输入最大时长" onChange={(e) => store.setMaxTime(+e.target.value)} />
+                    </Form.Item>
+                    <Form.Item
+                        label="帧率"
+                        name="fps"
+                    >
+                        <Input placeholder="请输入最大时长" onChange={(e) => store.setFps(+e.target.value)} />
+                    </Form.Item>
+                    <Form.Item
+                        label="背景颜色"
+                        name="backgroundColor"
+                    >
+                        <ColorPicker onChangeComplete={color => store.setBackgroundColor(color.toHexString())} defaultValue="{store.backgroundColor}" showText />
+                    </Form.Item>
+                    <Form.Item
+                        label="画布宽度"
+                        name="canvasWidth"
+                    >
+                        <Input placeholder="请输入画布宽度" onChange={(e) => store.setCanvasSize(+formRef.current.getFieldsValue().canvasWidth,
+                            +formRef.current.getFieldsValue().canvasHeight)} />
+                    </Form.Item>
+                    <Form.Item
+                        label="画布高度"
+                        name="canvasHeight"
+                    >
+                        <Input placeholder="请输入画布高度" onChange={(e) => store.setCanvasSize(+formRef.current.getFieldsValue().canvasWidth,
+                            +formRef.current.getFieldsValue().canvasHeight)} />
+                    </Form.Item>
+                    <Form.Item
+                        label="视频格式"
+                        name="selectedVideoFormat"
+                    >
+                        <Radio.Group onChange={(e) => store.setVideoFormat(e.target.value)}>
+                            <Radio value="mp4">mp4</Radio>
+                            <Radio value="webm">webm</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                </>
+            )
+            }
         </Form>
     );
 });
