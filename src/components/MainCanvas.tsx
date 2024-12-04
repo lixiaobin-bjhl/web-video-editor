@@ -9,9 +9,9 @@ export const MainCanvas = observer(() => {
 
     useEffect(() => {
         const canvas = new fabric.Canvas("canvas", {
-            height: 500,
-            width: 800,
-            backgroundColor: "#ededed",
+            height: store.canvasHeight,
+            width: store.canvasWidth,
+            backgroundColor: store.backgroundColor,
         });
         fabric.Object.prototype.transparentCorners = false;
         fabric.Object.prototype.cornerColor = "#00a0f5";
