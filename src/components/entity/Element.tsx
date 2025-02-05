@@ -1,20 +1,20 @@
-"use client";
-import React from "react";
-import { EditorElement } from "@/types";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
-import { MdOutlineTextFields, MdMovie } from "react-icons/md";
+'use client'
+import React from 'react'
+import { EditorElement } from '@/types'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
+import { MdOutlineTextFields, MdMovie } from 'react-icons/md'
 
 export type ElementProps = {
     element: EditorElement;
 };
 
 export const Element = observer((props: ElementProps) => {
-    const store = React.useContext(StoreContext);
-    const { element } = props;
-    const Icon = element.type === "video" ? MdMovie : MdOutlineTextFields;
-    const isSelected = store.selectedElement?.id === element.id;
-    const bgColor = isSelected ? "rgba(0, 160, 245, 0.1)" : "";
+    const store = React.useContext(StoreContext)
+    const { element } = props
+    const Icon = element.type === 'video' ? MdMovie : MdOutlineTextFields
+    const isSelected = store.selectedElement?.id === element.id
+    const bgColor = isSelected ? 'rgba(0, 160, 245, 0.1)' : ''
     return (
         <div
             style={{
@@ -23,7 +23,7 @@ export const Element = observer((props: ElementProps) => {
             className={`flex mx-2 my-1 py-2 px-1 flex-row justify-start items-center ${bgColor}`}
             key={element.id}
             onClick={() => {
-                store.setSelectedElement(element);
+                store.setSelectedElement(element)
             }}
         >
             <Icon size="20" color="gray"></Icon>
@@ -31,45 +31,45 @@ export const Element = observer((props: ElementProps) => {
                 {element.name}
             </div>
             <div>
-                {element.type === "video" ? (
+                {element.type === 'video' ? (
                     <video
                         className="opacity-0 max-w-[20px] max-h-[20px]"
                         src={element.properties.src}
                         onLoad={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         onLoadedData={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         height={20}
                         width={20}
                         id={element.properties.elementId}
                     ></video>
                 ) : null}
-                {element.type === "image" ? (
+                {element.type === 'image' ? (
                     <img
                         className="opacity-0 max-w-[20px] max-h-[20px]"
                         src={element.properties.src}
                         onLoad={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         onLoadedData={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         height={20}
                         width={20}
                         id={element.properties.elementId}
                     ></img>
                 ) : null}
-                {element.type === "audio" ? (
+                {element.type === 'audio' ? (
                     <audio
                         className="opacity-0 max-w-[20px] max-h-[20px]"
                         src={element.properties.src}
                         onLoad={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         onLoadedData={() => {
-                            store.refreshElements();
+                            store.refreshElements()
                         }}
                         id={element.properties.elementId}
                     ></audio>
@@ -78,14 +78,14 @@ export const Element = observer((props: ElementProps) => {
             <button
                 className="bg-red-500 hover:bg-red-700 text-white mr-2 text-xs py-0 px-1 rounded"
                 onClick={(e) => {
-                    store.removeEditorElement(element.id);
-                    store.refreshElements();
-                    e.preventDefault();
-                    e.stopPropagation();
+                    store.removeEditorElement(element.id)
+                    store.refreshElements()
+                    e.preventDefault()
+                    e.stopPropagation()
                 }}
             >
                 X
             </button>
         </div>
-    );
-});
+    )
+})

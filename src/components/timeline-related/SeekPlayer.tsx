@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { StoreContext } from "@/store";
-import { formatTimeToMinSecMili } from "@/utils";
-import { observer } from "mobx-react-lite";
-import { useContext } from "react";
-import { MdPlayArrow, MdPause } from "react-icons/md";
-import { ScaleRangeInput } from "./ScaleRangeInput";
+import { StoreContext } from '@/store'
+import { formatTimeToMinSecMili } from '@/utils'
+import { observer } from 'mobx-react-lite'
+import { useContext } from 'react'
+import { MdPlayArrow, MdPause } from 'react-icons/md'
+import { ScaleRangeInput } from './ScaleRangeInput'
 
 const MARKINGS = [
     {
@@ -20,23 +20,23 @@ const MARKINGS = [
         size: 8,
         width: 1
     }
-];
+]
 
 export type SeekPlayerProps = {};
 
 
 export const SeekPlayer = observer((_props: SeekPlayerProps) => {
-    const store = useContext(StoreContext);
-    const Icon = store.playing ? MdPause : MdPlayArrow;
-    const formattedTime = formatTimeToMinSecMili(store.currentTimeInMs);
-    const formattedMaxTime = formatTimeToMinSecMili(store.maxTime);
+    const store = useContext(StoreContext)
+    const Icon = store.playing ? MdPause : MdPlayArrow
+    const formattedTime = formatTimeToMinSecMili(store.currentTimeInMs)
+    const formattedMaxTime = formatTimeToMinSecMili(store.maxTime)
     return (
         <div className="seek-player flex flex-col secondary-text-color">
             <div className="flex flex-row items-center px-2">
                 <button
                     className="w-[80px] rounded  px-2 py-2"
                     onClick={() => {
-                        store.setPlaying(!store.playing);
+                        store.setPlaying(!store.playing)
                     }}
                 >
                     <Icon size="40"></Icon>
@@ -49,12 +49,12 @@ export const SeekPlayer = observer((_props: SeekPlayerProps) => {
                 max={store.maxTime}
                 value={store.currentTimeInMs}
                 onChange={(value) => {
-                    store.handleSeek(value);
+                    store.handleSeek(value)
                 }}
                 height={30}
                 markings={MARKINGS}
                 backgroundColor="white"
             />
         </div>
-    );
-});
+    )
+})

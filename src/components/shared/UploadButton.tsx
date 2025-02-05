@@ -15,5 +15,5 @@ export const UploadButton = (props: UploadButtonProps) => {
             />
             上传
         </label>
-    );
-};
+    )
+}

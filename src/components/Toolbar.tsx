@@ -91,17 +91,24 @@ const MENU_OPTIONS = [
         },
     },
     {
-        name: "背景",
+        name: "Echarts",
         icon: MdOutlineFormatColorFill,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Fill");
+            store.setSelectedMenuOption("Echart");
         },
     },
-    {
-        name: "导出",
-        icon: MdDownload,
-        action: (store: Store) => {
-            store.setSelectedMenuOption("Export");
-        },
-    },
+    // {
+    //     name: "背景",
+    //     icon: MdOutlineFormatColorFill,
+    //     action: (store: Store) => {
+    //         store.setSelectedMenuOption("Fill");
+    //     },
+    // },
+    // {
+    //     name: "导出",
+    //     icon: MdDownload,
+    //     action: (store: Store) => {
+    //         store.setSelectedMenuOption("Export");
+    //     },
+    // },
 ];

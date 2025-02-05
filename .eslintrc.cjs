@@ -3,25 +3,13 @@ module.exports = {
     env: { browser: true, es2020: true },
     extends: [
         'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
         'plugin:react-hooks/recommended',
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
     plugins: [
-        'react-refresh',
-        'eslint:recommended',
-        'plugin:react/recommended'
     ],
     rules: {
-        'react-refresh/only-export-components': [
-            'warn',
-            { allowConstantExport: true },
-        ],
-
-        'no-empty': [2, {
-            allowEmptyCatch: true
-        }],
         /**
     * 禁止在正则表达式中使用空字符集
     */
@@ -33,7 +21,10 @@ module.exports = {
         /**
     * 用作代码块起始的左花括号 `{` 前必须有一个空格
     */
-        'brace-style': [2, 'stroustrup'],
+        'brace-style': 'off',
+        'no-undef': 'off',
+        'no-redeclare': 'off',
+        'line-comment-position': 'off',
         /**
     * 使用驼峰拼写法命名
     */
@@ -107,10 +98,12 @@ module.exports = {
     * 建议使用单引号
     */
         quotes: [1, 'single'],
+        'no-unused-vars': 'off',
+        'max-len': 'off',
         /**
     * 禁用分号
     */
-        semi: ['error', 'never'], // 禁止使用分号
+        semi: 'off', // 禁止使用分号
         /**
     * function 的左括号之前的空格
     * 具名函数无空格 function foo() {}
@@ -190,9 +183,7 @@ module.exports = {
             mode: 'strict'
         }],
         /**
-    * 强制行注释只在代码上方，单独成行
     */
-        'line-comment-position': [2, 'above'],
         /**
     * `if`、`else`、`for`、`do`、`while` 语句中，即使只有一行，也不得缺省块 `{...}`;
     */

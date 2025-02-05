@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
+'use client'
+import React from 'react'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
 
 export const ExportVideoPanel = observer(() => {
-    const store = React.useContext(StoreContext);
+    const store = React.useContext(StoreContext)
 
     return (
         <>
@@ -20,8 +20,8 @@ export const ExportVideoPanel = observer(() => {
                         className="rounded text-center border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 max-w-[50px] mr-2"
                         value={store.maxTime / 1000}
                         onChange={(e) => {
-                            const value = e.target.value;
-                            store.setMaxTime(Number(value) * 1000);
+                            const value = e.target.value
+                            store.setMaxTime(Number(value) * 1000)
                         }}
                     />
                     <div>secs</div>
@@ -40,9 +40,9 @@ export const ExportVideoPanel = observer(() => {
                         className="mr-2"
                         name="video-format"
                         value="mp4"
-                        checked={store.selectedVideoFormat === "mp4"}
+                        checked={store.selectedVideoFormat === 'mp4'}
                         onChange={(e) => {
-                            store.setVideoFormat("mp4");
+                            store.setVideoFormat('mp4')
                         }}
                     />
                     <div className="text-xs mr-2">MP4</div>
@@ -51,9 +51,9 @@ export const ExportVideoPanel = observer(() => {
                         className="mr-2"
                         name="video-format"
                         value="gif"
-                        checked={store.selectedVideoFormat === "webm"}
+                        checked={store.selectedVideoFormat === 'webm'}
                         onChange={(e) => {
-                            store.setVideoFormat("webm");
+                            store.setVideoFormat('webm')
                         }}
                     />
                     <div className="text-xs mr-2">webm</div>
@@ -63,16 +63,16 @@ export const ExportVideoPanel = observer(() => {
             <button
                 className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-1 rounded-lg m-4"
                 onClick={() => {
-                    store.handleSeek(0);
-                    store.setSelectedElement(null);
+                    store.handleSeek(0)
+                    store.setSelectedElement(null)
                     setTimeout(() => {
-                        store.setPlaying(true);
-                        store.saveCanvasToVideoWithAudio();
-                    }, 1000);
+                        store.setPlaying(true)
+                        store.saveCanvasToVideoWithAudio()
+                    }, 1000)
                 }}
             >
-                导出视频 ({store.maxTime / 1000} secs) {store.selectedVideoFormat === "mp4" ? ("ALPHA") : ""}
+                导出视频 ({store.maxTime / 1000} secs) {store.selectedVideoFormat === 'mp4' ? ('ALPHA') : ''}
             </button>
         </>
-    );
-});
+    )
+})

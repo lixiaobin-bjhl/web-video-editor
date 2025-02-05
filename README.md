@@ -10,7 +10,7 @@
 * Flexlayout-react
 
 ## 效果截图
-![alt text](image.png)
+![alt text](demo.png)
 
 ## TODO
 

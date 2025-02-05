@@ -1,14 +1,16 @@
 
-"use client";
-import React, { useRef, useEffect } from "react";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
-import MainCanvasProperty from "./properties/MainCanvasProperty";
-import TextProperty from "./properties/TextProperty";
-import VideoProperty from "./properties/VideoProperty";
+'use client';
+import React, { useRef, useEffect } from 'react';
+import { StoreContext } from '@/store';
+import { observer } from 'mobx-react';
+import MainCanvasProperty from './properties/MainCanvasProperty';
+import TextProperty from './properties/TextProperty';
+import VideoProperty from './properties/VideoProperty';
+import ImageProperty from './properties/ImageProperty';
+
 
 // Property 组件用于选择合适的子组件来渲染
-export const Property = observer((props: EffectResourceProps) => {
+export const Property = observer((props: any) => {
     const formRef = useRef();
     const store = React.useContext(StoreContext);
 
@@ -17,6 +19,7 @@ export const Property = observer((props: EffectResourceProps) => {
             {!store.selectedElement && <MainCanvasProperty formRef={formRef} />}
             {store.selectedElement && store.selectedElement.type === 'text' && <TextProperty formRef={formRef} />}
             {store.selectedElement && store.selectedElement.type === 'video' && <VideoProperty formRef={formRef} />}
+            {store.selectedElement && store.selectedElement.type === 'image' && <ImageProperty formRef={formRef} />}
         </>
     );
 });

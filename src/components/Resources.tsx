@@ -10,6 +10,7 @@ import { ImageResourcesPanel } from "./panels/ImageResourcesPanel";
 import { TextResourcesPanel } from "./panels/TextResourcesPanel";
 import { VideoResourcesPanel } from "./panels/VideoResourcesPanel";
 import { EffectsPanel } from "./panels/EffectsPanel";
+import { EchartPanel } from './panels/EchartPanel';
 
 export const Resources = observer(() => {
     const store = React.useContext(StoreContext);
@@ -24,6 +25,7 @@ export const Resources = observer(() => {
             {selectedMenuOption === "Effect" ? <EffectsPanel /> : null}
             {selectedMenuOption === "Export" ? <ExportVideoPanel /> : null}
             {selectedMenuOption === "Fill" ? <FillPanel /> : null}
+            {selectedMenuOption === "Echart" ? <EchartPanel /> : null}
         </div>
     );
 });

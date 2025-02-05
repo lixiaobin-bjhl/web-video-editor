@@ -1,33 +1,33 @@
-"use client";
-import React from "react";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
-import { AnimationResource } from "../entity/AnimationResource";
-import { getUid } from "@/utils";
+'use client'
+import React from 'react'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
+import { AnimationResource } from '../entity/AnimationResource'
+import { getUid } from '@/utils'
 
 export const AnimationsPanel = observer(() => {
-    const store = React.useContext(StoreContext);
-    const selectedElement = store.selectedElement;
+    const store = React.useContext(StoreContext)
+    const selectedElement = store.selectedElement
     const selectedElementAnimations = store.animations.filter((animation) => {
-        return animation.targetId === selectedElement?.id;
-    });
+        return animation.targetId === selectedElement?.id
+    })
     const hasFadeInAnimation = selectedElementAnimations.some((animation) => {
-        return animation.type === "fadeIn";
-    });
+        return animation.type === 'fadeIn'
+    })
     const hasFadeOutAnimation = selectedElementAnimations.some((animation) => {
-        return animation.type === "fadeOut";
-    });
+        return animation.type === 'fadeOut'
+    })
 
     const hasSlideInAnimation = selectedElementAnimations.some((animation) => {
-        return animation.type === "slideIn";
-    });
+        return animation.type === 'slideIn'
+    })
     const hasSlideOutAnimation = selectedElementAnimations.some((animation) => {
-        return animation.type === "slideOut";
-    });
+        return animation.type === 'slideOut'
+    })
 
     const hasConsantAnimation = selectedElementAnimations.some((animation) => {
-        return animation.type === "breathe";
-    });
+        return animation.type === 'breathe'
+    })
 
     return (
         <>
@@ -40,11 +40,11 @@ export const AnimationsPanel = observer(() => {
                     onClick={() => {
                         store.addAnimation({
                             id: getUid(),
-                            type: "fadeIn",
-                            targetId: selectedElement?.id ?? "",
+                            type: 'fadeIn',
+                            targetId: selectedElement?.id ?? '',
                             duration: 1000,
                             properties: {},
-                        });
+                        })
                     }}
                 >
                     Add Fade In
@@ -56,11 +56,11 @@ export const AnimationsPanel = observer(() => {
                     onClick={() => {
                         store.addAnimation({
                             id: getUid(),
-                            type: "fadeOut",
-                            targetId: selectedElement?.id ?? "",
+                            type: 'fadeOut',
+                            targetId: selectedElement?.id ?? '',
                             duration: 1000,
                             properties: {},
-                        });
+                        })
                     }}
                 >
                     Add Fade Out
@@ -72,15 +72,15 @@ export const AnimationsPanel = observer(() => {
                     onClick={() => {
                         store.addAnimation({
                             id: getUid(),
-                            type: "slideIn",
-                            targetId: selectedElement?.id ?? "",
+                            type: 'slideIn',
+                            targetId: selectedElement?.id ?? '',
                             duration: 1000,
                             properties: {
-                                direction: "left",
+                                direction: 'left',
                                 useClipPath: false,
-                                textType: "none",
+                                textType: 'none',
                             },
-                        });
+                        })
                     }}
                 >
                     Add Slide In
@@ -92,15 +92,15 @@ export const AnimationsPanel = observer(() => {
                     onClick={() => {
                         store.addAnimation({
                             id: getUid(),
-                            type: "slideOut",
-                            targetId: selectedElement?.id ?? "",
+                            type: 'slideOut',
+                            targetId: selectedElement?.id ?? '',
                             duration: 1000,
                             properties: {
-                                direction: "right",
+                                direction: 'right',
                                 useClipPath: false,
-                                textType: "none",
+                                textType: 'none',
                             },
-                        });
+                        })
                     }}
                 >
                     Add Slide Out
@@ -112,19 +112,19 @@ export const AnimationsPanel = observer(() => {
                     onClick={() => {
                         store.addAnimation({
                             id: getUid(),
-                            type: "breathe",
-                            targetId: selectedElement?.id ?? "",
+                            type: 'breathe',
+                            targetId: selectedElement?.id ?? '',
                             duration: 1000,
                             properties: {},
-                        });
+                        })
                     }}
                 >
                     Add Breathing
                 </div>
             ) : null}
             {selectedElementAnimations.map((animation) => {
-                return <AnimationResource key={animation.id} animation={animation} />;
+                return <AnimationResource key={animation.id} animation={animation} />
             })}
         </>
-    );
-});
+    )
+})

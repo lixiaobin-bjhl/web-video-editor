@@ -20,6 +20,7 @@
         "@types/node": "20.4.0",
         "@types/react": "18.2.14",
         "@types/react-dom": "18.2.6",
+        "@xzdarcy/react-timeline-editor": "^0.1.9",
         "animejs": "^3.2.1",
         "antd": "^5.22.3",
         "autoprefixer": "10.4.14",
@@ -42,7 +43,9 @@
     },
     "devDependencies": {
         "@types/animejs": "^3.1.7",
+        "@types/prismjs": "^1.26.5",
         "@types/react-color": "^3.0.6",
-        "eslint-plugin-react": "^7.37.2"
+        "eslint-plugin-react": "^7.37.2",
+        "eslint-plugin-react-refresh": "^0.4.18"
     }
 }

@@ -135,7 +135,7 @@ export const App = () => {
         } else if (component === "layoutJson") {
             return (<LayoutJsonView model={model} />);
         } else if (component === "videoJson") {
-            return (<VideoJsonView model={model} />);
+            return (<VideoJsonView />);
         } else if (component === "toolbar") {
             return (
                 <div className='grid grid-flow-col'><Toolbar /><Resources /></div >
