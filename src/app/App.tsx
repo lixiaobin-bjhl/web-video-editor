@@ -1,118 +1,118 @@
 
-"use client";
+'use client'
 
-import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react';
-import 'flexlayout-react/style/light.css';
-import { LayoutJsonView, VideoJsonView } from './JsonView';
-import { Toolbar } from "../components/Toolbar";
-import { Resources } from '@/components/Resources';
-import { Property } from '@/components/Property';
-import { TimeLine } from "@/components/TimeLine";
-import { StoreContext } from "@/store";
-import { ElementsPanel } from '@/components/panels/ElementsPanel';
-import { Store } from "@/store/Store";
-import React, { useEffect, useState } from "react";
-import { MainCanvas } from '@/components/MainCanvas';
-import { observer } from "mobx-react";
+import { Layout, Model, TabNode, IJsonModel } from 'flexlayout-react'
+import 'flexlayout-react/style/light.css'
+import { LayoutJsonView, VideoJsonView } from './JsonView'
+import { Toolbar } from '../components/Toolbar'
+import { Resources } from '@/components/Resources'
+import { Property } from '@/components/Property'
+import { TimeLine } from '@/components/TimeLine'
+import { StoreContext } from '@/store'
+import { ElementsPanel } from '@/components/panels/ElementsPanel'
+import { Store } from '@/store/Store'
+import React, { useEffect, useState } from 'react'
+import { MainCanvas } from '@/components/MainCanvas'
+import { observer } from 'mobx-react'
 
 import {
     MdDownload,
-} from "react-icons/md";
+} from 'react-icons/md'
 
-import "@/utils/fabric-utils";
+import '@/utils/fabric-utils'
 
 var json: IJsonModel = {
-    global: { "tabEnablePopout": false },
+    global: { 'tabEnablePopout': false },
     borders: [
         {
-            "type": "border",
-            "location": "bottom",
-            "size": 100,
-            "children": [
+            'type': 'border',
+            'location': 'bottom',
+            'size': 100,
+            'children': [
                 {
-                    "type": "tab",
-                    "name": "布局JSON",
-                    "component": "layoutJson",
-                    "enableClose": false
+                    'type': 'tab',
+                    'name': '布局JSON',
+                    'component': 'layoutJson',
+                    'enableClose': false
                 },
                 {
-                    "type": "tab",
-                    "name": "视频JSON",
-                    "component": "videoJson",
-                    "enableClose": false
+                    'type': 'tab',
+                    'name': '视频JSON',
+                    'component': 'videoJson',
+                    'enableClose': false
                 }
             ]
         }
     ],
     layout: {
-        type: "row",
+        type: 'row',
         children: [
             {
-                type: "row",
+                type: 'row',
                 weight: 100,
                 children: [
                     {
-                        type: "row",
+                        type: 'row',
                         weight: 70,
                         children: [
                             {
-                                type: "tabset",
+                                type: 'tabset',
                                 weight: 20,
                                 children: [
                                     {
-                                        type: "tab",
-                                        name: "工具栏",
-                                        component: "toolbar",
+                                        type: 'tab',
+                                        name: '工具栏',
+                                        component: 'toolbar',
                                     }
                                 ]
                             },
                             {
-                                type: "tabset",
+                                type: 'tabset',
                                 weight: 60,
                                 children: [
                                     {
-                                        type: "tab",
-                                        name: "编辑区",
-                                        component: "mainCanvas",
+                                        type: 'tab',
+                                        name: '编辑区',
+                                        component: 'mainCanvas',
                                     }
                                 ]
                             },
                             {
-                                type: "tabset",
+                                type: 'tabset',
                                 weight: 20,
                                 children: [
                                     {
-                                        type: "tab",
-                                        name: "属性区",
-                                        component: "property",
+                                        type: 'tab',
+                                        name: '属性区',
+                                        component: 'property',
                                     }
                                 ]
                             }
                         ]
                     },
                     {
-                        type: "row",
+                        type: 'row',
                         weight: 30,
                         children: [
                             {
-                                type: "tabset",
+                                type: 'tabset',
                                 weight: 20,
                                 children: [
                                     {
-                                        type: "tab",
-                                        name: "图层",
-                                        component: "elementsPanel",
+                                        type: 'tab',
+                                        name: '图层',
+                                        component: 'elementsPanel',
                                     }
                                 ]
                             },
                             {
-                                type: "tabset",
+                                type: 'tabset',
                                 weight: 80,
                                 children: [
                                     {
-                                        type: "tab",
-                                        name: "时间轴",
-                                        component: "timeLine",
+                                        type: 'tab',
+                                        name: '时间轴',
+                                        component: 'timeLine',
                                     }
                                 ]
                             }
@@ -122,47 +122,48 @@ var json: IJsonModel = {
             }
         ]
     }
-};
+}
 
-const model = Model.fromJson(json);
+const model = Model.fromJson(json)
 
 export const App = () => {
-    const [store] = useState(new Store());
+    const [store] = useState(new Store())
     const factory = (node: TabNode) => {
-        var component = node.getComponent();
-        if (component === "button") {
-            return <button>{node.getName()}haha1</button>;
-        } else if (component === "layoutJson") {
-            return (<LayoutJsonView model={model} />);
-        } else if (component === "videoJson") {
-            return (<VideoJsonView />);
-        } else if (component === "toolbar") {
+        var component = node.getComponent()
+        if (component === 'button') {
+            return <button>{node.getName()}haha1</button>
+        } else if (component === 'layoutJson') {
+            return (<LayoutJsonView model={model} />)
+        } else if (component === 'videoJson') {
+            return (<VideoJsonView />)
+        } else if (component === 'toolbar') {
             return (
                 <div className='grid grid-flow-col'><Toolbar /><Resources /></div >
-            );
-        } else if (component === "mainCanvas") {
-            return (<MainCanvas />);
-        } else if (component === "timeLine") {
-            return (<TimeLine />);
-        } else if (component === "elementsPanel") {
-            return (<ElementsPanel />);
-        } else if (component === "property") {
-            return (<Property />);
+            )
+        } else if (component === 'mainCanvas') {
+            return (<MainCanvas />)
+        } else if (component === 'timeLine') {
+            return (<TimeLine />)
+        } else if (component === 'elementsPanel') {
+            return (<ElementsPanel />)
+        } else if (component === 'property') {
+            return (<Property />)
         }
     }
     return (
         <StoreContext.Provider value={store}>
             <div id="container">
                 <div className="app">
-                    <div className="header secondary-text-color" dir="ltr">
-                        head area  web video editor <MdDownload className='cursor-pointer' fontSize="25" onClick={() => {
-                            store.handleSeek(0);
-                            store.setSelectedElement(null);
+                    <div className="header secondary-text-color flex justify-between" dir="ltr">
+                        <div>video clip</div>
+                        <div className='flex cursor-pointer' onClick={() => {
+                            store.handleSeek(0)
+                            store.setSelectedElement(null)
                             setTimeout(() => {
-                                store.setPlaying(true);
-                                store.saveCanvasToVideoWithAudio();
-                            }, 1000);
-                        }}></MdDownload>
+                                store.setPlaying(true)
+                                store.saveCanvasToVideoWithAudio()
+                            }, 1000)
+                        }}>download <MdDownload className='cursor-pointer' fontSize="25"></MdDownload></div>
                     </div>
                     <div className="contents">
                         <Layout

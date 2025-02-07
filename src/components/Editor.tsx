@@ -1,27 +1,27 @@
-"use client";
+'use client'
 
-import { fabric } from "fabric";
-import React, { useEffect, useState } from "react";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
-import { Resources } from "./Resources";
-import { ElementsPanel } from "./panels/ElementsPanel";
-import { Toolbar } from "./Toolbar";
-import { TimeLine } from "./TimeLine";
-import { Store } from "@/store/Store";
-import "@/utils/fabric-utils";
+import { fabric } from 'fabric'
+import React, { useEffect, useState } from 'react'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
+import { Resources } from './Resources'
+import { ElementsPanel } from './panels/ElementsPanel'
+import { Toolbar } from './Toolbar'
+import { TimeLine } from './TimeLine'
+import { Store } from '@/store/Store'
+import '@/utils/fabric-utils'
 
 export const EditorWithStore = () => {
-    const [store] = useState(new Store());
+    const [store] = useState(new Store())
     return (
         <StoreContext.Provider value={store}>
             <Editor></Editor>
         </StoreContext.Provider>
-    );
+    )
 }
 
 export const Editor = observer(() => {
-    const store = React.useContext(StoreContext);
+    const store = React.useContext(StoreContext)
 
     useEffect(() => {
         // const canvas = new fabric.Canvas("canvas", {
@@ -46,7 +46,7 @@ export const Editor = observer(() => {
         //     canvas.renderAll();
         //     fabric.util.requestAnimFrame(render);
         // });
-    }, []);
+    }, [])
     return (
         <div className="grid grid-rows-[500px_1fr_20px] grid-cols-[72px_300px_1fr_250px] h-[100svh]">
             <div className="tile row-span-2 flex flex-col" id="side-nav">
@@ -68,5 +68,5 @@ export const Editor = observer(() => {
                 lixiaobin
             </div>
         </div>
-    );
-});
+    )
+})

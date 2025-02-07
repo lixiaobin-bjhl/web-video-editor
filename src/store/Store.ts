@@ -36,9 +36,9 @@ export class Store {
 
     constructor() {
         this.canvas = null
-        this.videos = []
+        this.videos = ['https://file.bgwa.cn/file/yuenqi.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=1FG9UOEAELB87H07EI64%2F20250206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250206T074610Z&X-Amz-Expires=43200&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiIxRkc5VU9FQUVMQjg3SDA3RUk2NCIsImV4cCI6MTczODg3MDY4MSwicGFyZW50IjoiYWRtaW4ifQ.Um1XVEHWlp38yFm4aXuBV_MVPitZCBTCRktitL1V2mNGE2WPemCSEbsYgEQ3AP4dz2TN0eJ8MNCKd96qGfKj4A&X-Amz-SignedHeaders=host&versionId=null&X-Amz-Signature=084489484243b28fd87e9e798dd9b982029f5d1a69bc6067efc459d605c7078a']
         this.images = ['https://i01piccdn.sogoucdn.com/b1aedbd92edb393e']
-        this.audios = []
+        this.audios = ['https://file.bgwa.cn/file/demo.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=1FG9UOEAELB87H07EI64%2F20250206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250206T074326Z&X-Amz-Expires=43200&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiIxRkc5VU9FQUVMQjg3SDA3RUk2NCIsImV4cCI6MTczODg3MDY4MSwicGFyZW50IjoiYWRtaW4ifQ.Um1XVEHWlp38yFm4aXuBV_MVPitZCBTCRktitL1V2mNGE2WPemCSEbsYgEQ3AP4dz2TN0eJ8MNCKd96qGfKj4A&X-Amz-SignedHeaders=host&versionId=null&X-Amz-Signature=60aea680062c53bee7db6f16e49de06a6e7b3db049bf47d9a0ead265121f9381']
         this.editorElements = []
         this.backgroundColor = '#66b19c'
         this.maxTime = 5 * 1000
@@ -384,9 +384,10 @@ export class Store {
             return
         }
         const elapsedTime = Date.now() - this.startedTime
-        const newTime = this.startedTimePlay + elapsedTime
+        let newTime = this.startedTimePlay + elapsedTime
+        newTime = Math.min(newTime, this.maxTime)
         this.updateTimeTo(newTime)
-        if (newTime > this.maxTime) {
+        if (newTime >= this.maxTime) {
             this.currentKeyFrame = 0
             this.setPlaying(false)
         }

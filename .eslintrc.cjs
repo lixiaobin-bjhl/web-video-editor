@@ -103,7 +103,7 @@ module.exports = {
         /**
     * 禁用分号
     */
-        semi: 'off', // 禁止使用分号
+        semi: [2, 'never'], // 禁止使用分号
         /**
     * function 的左括号之前的空格
     * 具名函数无空格 function foo() {}

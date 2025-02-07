@@ -65,7 +65,7 @@ export const TimeFrameView = observer((props: { element: EditorElement }) => {
                         backgroundRepeat: 'repeat-x'
                     }}
                 >
-                    {element.type !== 'image' ? element.name : null}
+                    {element.type !== 'image' ? element.name + '[duration]' + element.timeFrame.start + '-' +  element.timeFrame.end : null}
                 </div>
             </DragableView>
             <DragableView

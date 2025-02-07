@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { StoreContext } from "@/store";
-import { observer } from "mobx-react";
+'use client'
+import React from 'react'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
 import {
     MdDownload,
     MdVideoLibrary,
@@ -11,90 +11,90 @@ import {
     MdAudiotrack,
     MdOutlineFormatColorFill,
     MdMovieFilter,
-} from "react-icons/md";
-import { Store } from "@/store/Store";
+} from 'react-icons/md'
+import { Store } from '@/store/Store'
 
 export const Toolbar = observer(() => {
-    const store = React.useContext(StoreContext);
+    const store = React.useContext(StoreContext)
 
     return (
         <ul className="side-nav h-full">
             {MENU_OPTIONS.map((option) => {
-                const isSelected = store.selectedMenuOption === option.name;
+                const isSelected = store.selectedMenuOption === option.name
                 return (
                     <li
                         key={option.name}
-                        className={`h-[72px] w-[72px] flex flex-col items-center justify-center ${isSelected ? "bg-slate-200" : ""}`}
+                        className={`h-[72px] w-[72px] flex flex-col items-center justify-center ${isSelected ? 'bg-slate-200' : ''}`}
                     >
                         <button
                             onClick={() => option.action(store)}
-                            className={`flex flex-col items-center`}
+                            className={'flex flex-col items-center'}
                         >
                             <option.icon
                                 size="20"
-                                color={isSelected ? "var(--secondary-text-color)" : "var(--secondary-text-color)"}
+                                color={isSelected ? 'var(--secondary-text-color)' : 'var(--secondary-text-color)'}
                             />
                             <div
-                                className={`text-[0.75rem] hover:var(--secondary-text-color) ${isSelected ? "secondary-text-color" : "secondary-text-color"} `}
+                                className={`text-[0.75rem] hover:var(--secondary-text-color) ${isSelected ? 'secondary-text-color' : 'secondary-text-color'} `}
                             >
                                 {option.name}
                             </div>
                         </button>
                     </li>
-                );
+                )
             })}
         </ul >
-    );
-});
+    )
+})
 
 const MENU_OPTIONS = [
     {
-        name: "视频",
+        name: '视频',
         icon: MdVideoLibrary,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Video");
+            store.setSelectedMenuOption('Video')
         },
     },
     {
-        name: "音频",
+        name: '音频',
         icon: MdAudiotrack,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Audio");
+            store.setSelectedMenuOption('Audio')
         },
     },
     {
-        name: "图片",
+        name: '图片',
         icon: MdImage,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Image");
+            store.setSelectedMenuOption('Image')
         },
     },
     {
-        name: "文字",
+        name: '文字',
         icon: MdTitle,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Text");
+            store.setSelectedMenuOption('Text')
         },
     },
     {
-        name: "动画",
+        name: '动画',
         icon: MdTransform,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Animation");
+            store.setSelectedMenuOption('Animation')
         },
     },
     {
-        name: "特效",
+        name: '特效',
         icon: MdMovieFilter,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Effect");
+            store.setSelectedMenuOption('Effect')
         },
     },
     {
-        name: "Echarts",
+        name: 'Echarts',
         icon: MdOutlineFormatColorFill,
         action: (store: Store) => {
-            store.setSelectedMenuOption("Echart");
+            store.setSelectedMenuOption('Echart')
         },
     },
     // {
@@ -111,4 +111,4 @@ const MENU_OPTIONS = [
     //         store.setSelectedMenuOption("Export");
     //     },
     // },
-];
+]

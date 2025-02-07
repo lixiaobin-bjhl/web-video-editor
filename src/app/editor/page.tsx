@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
 import dynamic from 'next/dynamic'
 
-const DynmicEditor = dynamic(() => import('../../components/Editor').then(a => a.EditorWithStore), {
+const DynmicEditor = dynamic(() => import('../../components/Editor').then((a) => a.EditorWithStore), {
     ssr: false,
 })
 
@@ -10,9 +10,9 @@ const DynmicEditor = dynamic(() => import('../../components/Editor').then(a => a
 function EditorPage() {
     return (
         <DynmicEditor />
-    );
+    )
 }
 
-EditorPage.diplsayName = "EditorPage";
+EditorPage.diplsayName = 'EditorPage'
 
-export default EditorPage;
+export default EditorPage

@@ -4,7 +4,7 @@ import { StoreContext } from '@/store'
 import { Form, Input, InputNumber, ColorPicker, Radio, Tooltip, Space } from 'antd'
 import { formLayout } from './propertyFormLayout'
 
-const VideoProperty = observer(({ formRef }) => {
+const AudioProperty = observer(({ formRef }) => {
     const store = React.useContext(StoreContext)
     useEffect(() => {
         if (formRef.current) {
@@ -69,4 +69,4 @@ const VideoProperty = observer(({ formRef }) => {
     )
 })
 
-export default VideoProperty
+export default AudioProperty

@@ -9,16 +9,32 @@ import { ScaleRangeInput } from './ScaleRangeInput'
 
 const MARKINGS = [
     {
-        interval: 5000,
-        color: 'black',
-        size: 16,
-        width: 1
+        interval: 1000, // 10秒主刻度
+        color: '#1a1a1a',
+        size: 20,
+        width: 2,
+        showText: true
     },
     {
-        interval: 1000,
-        color: 'black',
-        size: 8,
-        width: 1
+        interval: 500,  // 5秒中刻度
+        color: '#4a4a4a',
+        size: 15,
+        width: 1.5,
+        showText: true
+    },
+    {
+        interval: 100,  // 1秒小刻度
+        color: '#6a6a6a',
+        size: 10,
+        width: 1,
+        showText: false
+    },
+    {
+        interval: 50,   // 500ms最小刻度
+        color: '#8a8a8a',
+        size: 5,
+        width: 0.5,
+        showText: false
     }
 ]
 
@@ -51,9 +67,9 @@ export const SeekPlayer = observer((_props: SeekPlayerProps) => {
                 onChange={(value) => {
                     store.handleSeek(value)
                 }}
-                height={30}
+                height={80}
                 markings={MARKINGS}
-                backgroundColor="white"
+                backgroundColor="#ffffff"
             />
         </div>
     )

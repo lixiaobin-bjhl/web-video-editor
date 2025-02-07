@@ -14,7 +14,9 @@ const TextProperty = observer(({ formRef }) => {
                 id: store.selectedElement?.id,
                 name: store.selectedElement?.name,
                 x: store.selectedElement?.placement?.x || 0,
-                y: store.selectedElement?.placement?.y || 0
+                y: store.selectedElement?.placement?.y || 0,
+                start: store.selectedElement?.timeFrame?.start || 0,
+                end: store.selectedElement?.timeFrame?.end || 0
             })
         }
     }, [store.selectedElement])
@@ -66,6 +68,18 @@ const TextProperty = observer(({ formRef }) => {
                 name="y"
             >
                 <Input placeholder="请输入垂直位置" onChange={handleElementPropertyInputChange(store, 'placement', 'y')} />
+            </Form.Item>
+            <Form.Item
+                label="开始时间"
+                name="start"
+            >
+                <Input placeholder="请输入开始时间" onChange={handleElementPropertyInputChange(store, 'timeFrame', 'start')} />
+            </Form.Item>
+            <Form.Item
+                label="结束时间"
+                name="end"
+            >
+                <Input placeholder="请输入结束时间" onChange={handleElementPropertyInputChange(store, 'timeFrame', 'end')} />
             </Form.Item>
         </Form >
     )

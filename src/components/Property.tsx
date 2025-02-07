@@ -1,18 +1,18 @@
 
-'use client';
-import React, { useRef, useEffect } from 'react';
-import { StoreContext } from '@/store';
-import { observer } from 'mobx-react';
-import MainCanvasProperty from './properties/MainCanvasProperty';
-import TextProperty from './properties/TextProperty';
-import VideoProperty from './properties/VideoProperty';
-import ImageProperty from './properties/ImageProperty';
-
+'use client'
+import React, { useRef, useEffect } from 'react'
+import { StoreContext } from '@/store'
+import { observer } from 'mobx-react'
+import MainCanvasProperty from './properties/MainCanvasProperty'
+import TextProperty from './properties/TextProperty'
+import VideoProperty from './properties/VideoProperty'
+import ImageProperty from './properties/ImageProperty'
+import AudioProperty from './properties/AudioProperty'
 
 // Property 组件用于选择合适的子组件来渲染
 export const Property = observer((props: any) => {
-    const formRef = useRef();
-    const store = React.useContext(StoreContext);
+    const formRef = useRef()
+    const store = React.useContext(StoreContext)
 
     return (
         <>
@@ -20,9 +20,10 @@ export const Property = observer((props: any) => {
             {store.selectedElement && store.selectedElement.type === 'text' && <TextProperty formRef={formRef} />}
             {store.selectedElement && store.selectedElement.type === 'video' && <VideoProperty formRef={formRef} />}
             {store.selectedElement && store.selectedElement.type === 'image' && <ImageProperty formRef={formRef} />}
+            {store.selectedElement && store.selectedElement.type === 'audio' && <AudioProperty formRef={formRef} />}
         </>
-    );
-});
+    )
+})
 
 
 // "use client";
