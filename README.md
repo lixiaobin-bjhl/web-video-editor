@@ -8,7 +8,7 @@
 * Flexlayout-react - UI架子
 
 ## 效果截图
-![demo image](vc.png)
+![demo image](vc.png?v=1)
 
 ## 体验地址
 [点击查看 https://vc.bgwa.cn](https://vc.bgwa.cn)
