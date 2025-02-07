@@ -54,3 +54,22 @@ export function formatTimeToMinSecMili(time: number) {
 function appendZero(value: number, minDigits: number = 2) {
     return value.toString().padStart(minDigits, '0')
 }
+
+
+export function imageUrlToBlob(imageUrl, callback) {
+    fetch(imageUrl)
+        .then((response) => {
+            // 检查请求是否成功
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.blob()
+        })
+        .then((blob) => {
+            // 调用回调函数并传递Blob对象
+            callback(blob)
+        })
+        .catch((error) => {
+            console.error('There has been a problem with your fetch operation:', error)
+        })
+}

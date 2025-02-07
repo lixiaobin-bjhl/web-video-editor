@@ -31,6 +31,7 @@ export const ImageResource = observer(({ image, index }: ImageResourceProps) => 
                         h: ref.current?.naturalHeight ?? 0,
                     })
                 }}
+                crossOrigin="anonymous"
                 ref={ref}
                 className="max-h-[100px] max-w-[150px]"
                 src={image}

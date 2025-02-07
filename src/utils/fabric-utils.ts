@@ -1,5 +1,6 @@
 import { EditorElement, EffecType } from '@/types'
 import { fabric } from 'fabric'
+import {imageUrlToBlob} from '@/utils/index'
 // https://jsfiddle.net/i_prikot/pw7yhaLf/
 
 export const CoverImage = fabric.util.createClass(fabric.Image, {
@@ -71,19 +72,30 @@ export const CoverImage = fabric.util.createClass(fabric.Image, {
         ctx.save()
         const customFilter: EffecType = this.customFilter
         ctx.filter = getFilterFromEffectType(customFilter)
-        ctx.drawImage(
-            this._element,
-            Math.max(cropX, 0),
-            Math.max(cropY, 0),
-            Math.max(1, cropWidth),
-            Math.max(1, cropHeight),
-            -width / 2,
-            -height / 2,
-            Math.max(0, width),
-            Math.max(0, height)
-        )
-        ctx.filter = 'none'
-        ctx.restore()
+        let src = this._element.src
+        let drawImage = () => {
+            ctx.drawImage(
+                this._element,
+                Math.max(cropX, 0),
+                Math.max(cropY, 0),
+                Math.max(1, cropWidth),
+                Math.max(1, cropHeight),
+                -width / 2,
+                -height / 2,
+                Math.max(0, width),
+                Math.max(0, height)
+            )
+            ctx.filter = 'none'
+            ctx.restore()
+        }
+        if (!src.startsWith('blob:')) {
+            src = imageUrlToBlob(src, (blob) => {
+                this._element.src = URL.createObjectURL(blob)
+                drawImage()
+            })
+        } else {
+            drawImage()
+        }
     },
 
 })

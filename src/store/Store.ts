@@ -9,6 +9,7 @@ import { FabricUitls } from '@/utils/fabric-utils'
 import { FFmpeg } from '@ffmpeg/ffmpeg'
 import { toBlobURL } from '@ffmpeg/util'
 
+
 export class Store {
     canvas: fabric.Canvas | null
 
@@ -37,7 +38,8 @@ export class Store {
     constructor() {
         this.canvas = null
         this.videos = ['https://file.bgwa.cn/file/yuenqi.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=1FG9UOEAELB87H07EI64%2F20250206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250206T074610Z&X-Amz-Expires=43200&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiIxRkc5VU9FQUVMQjg3SDA3RUk2NCIsImV4cCI6MTczODg3MDY4MSwicGFyZW50IjoiYWRtaW4ifQ.Um1XVEHWlp38yFm4aXuBV_MVPitZCBTCRktitL1V2mNGE2WPemCSEbsYgEQ3AP4dz2TN0eJ8MNCKd96qGfKj4A&X-Amz-SignedHeaders=host&versionId=null&X-Amz-Signature=084489484243b28fd87e9e798dd9b982029f5d1a69bc6067efc459d605c7078a']
-        this.images = ['https://i01piccdn.sogoucdn.com/b1aedbd92edb393e']
+        this.images = ['https://file.bgwa.cn/file/demo-img.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=2J6KQ01XM0XV06U5G5XQ%2F20250207%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250207T073903Z&X-Amz-Expires=43200&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiIySjZLUTAxWE0wWFYwNlU1RzVYUSIsImV4cCI6MTczODk1NzEwOSwicGFyZW50IjoiYWRtaW4ifQ.STEc5S0vq4FEslaIACHy7MaUr-9KyZBgC43AMUz8CAdeyX1VsLHewIemBTObb6ucGmSVflcpC9UhgfUhh2Q6Vg&X-Amz-SignedHeaders=host&versionId=null&X-Amz-Signature=307daeca3fab354f8915fb12f6e380b356ccc16893d16583774d963e5d899ee0',
+            'https://clideo.com/files/images/NeBiHB4bA2Aj/thumb.jpg']
         this.audios = ['https://file.bgwa.cn/file/demo.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=1FG9UOEAELB87H07EI64%2F20250206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250206T074326Z&X-Amz-Expires=43200&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiIxRkc5VU9FQUVMQjg3SDA3RUk2NCIsImV4cCI6MTczODg3MDY4MSwicGFyZW50IjoiYWRtaW4ifQ.Um1XVEHWlp38yFm4aXuBV_MVPitZCBTCRktitL1V2mNGE2WPemCSEbsYgEQ3AP4dz2TN0eJ8MNCKd96qGfKj4A&X-Amz-SignedHeaders=host&versionId=null&X-Amz-Signature=60aea680062c53bee7db6f16e49de06a6e7b3db049bf47d9a0ead265121f9381']
         this.editorElements = []
         this.backgroundColor = '#66b19c'
@@ -463,6 +465,7 @@ export class Store {
         }
         const aspectRatio = imageElement.naturalWidth / imageElement.naturalHeight
         const id = getUid()
+
         this.addEditorElement({
             id,
             name: `Media(image) ${index + 1}`,
@@ -625,7 +628,6 @@ export class Store {
     }
 
     saveCanvasToVideoWithAudioWebmMp4() {
-        console.log('modified')
         let mp4 = this.selectedVideoFormat === 'mp4'
         const canvas = document.getElementById('canvas') as HTMLCanvasElement
         const stream = canvas.captureStream(30)
@@ -813,7 +815,7 @@ export class Store {
                         // @ts-ignore
                         customFilter: element.properties.effect.type,
                     })
-                    // imageObject.applyFilters();
+                    // imageObject.applyFilters()
                     element.fabricObject = imageObject
                     element.properties.imageObject = imageObject
                     const image = {

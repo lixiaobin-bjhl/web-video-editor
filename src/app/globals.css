@@ -4,12 +4,12 @@
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 :root {
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
     --panel-back: #141629;
     --panel-stroke: #222544;
     --main-back: #070a1b;
@@ -35,11 +35,12 @@ body {
 .side-nav {
     /* background: var(--panel-back); */
 }
-.secondary-text-color{
+
+.secondary-text-color {
     color: var(--secondary-text-color);
 }
 
-#side-nav{
+#side-nav {
     background-color: var(--panel-back);
     border-right: 1px solid var(--panel-stroke);
     box-shadow: 1px 0px 0px #000000;
@@ -51,66 +52,75 @@ body {
     box-sizing: border-box;
 }
 
-html,body
-{
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
     font-size: medium;
 }
-#container  {
-    left:10px;
-    top:10px;
-    right:10px;
-    bottom:10px;
-    position:absolute;
-    display:flex;
-    overflow:hidden;
-}
-.app
-{
-    display:flex;
-    flex-direction: column;
-    flex-grow:1;
-}
 
-.header
-{
-    margin:2px;
+#container {
+    left: 10px;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    position: absolute;
     display: flex;
-    align-items:center;
+    overflow: hidden;
 }
 
-.contents
-{
-    display:flex;
-    flex-grow:1;
-    position:relative;
-    border:1px solid gray;
+.app {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.header {
+    margin: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.contents {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    border: 1px solid gray;
 }
 
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-button {
     background-color: #ddd;
 }
+
 ::-webkit-scrollbar-track {
     background-color: #efefef;
 }
+
 ::-webkit-scrollbar-track-piece {
     background-color: #eee;
 }
+
 ::-webkit-scrollbar-thumb {
     height: 50px;
     background-color: #ccc;
     border-radius: 3px;
 }
+
 ::-webkit-scrollbar-corner {
     background-color: #fff;
 }
+
 ::-webkit-resizer {
     background-color: #999;
+}
+
+.ant-btn {
+    background-color: #1677ff !important;
 }
