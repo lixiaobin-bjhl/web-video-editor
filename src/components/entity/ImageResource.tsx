@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { StoreContext } from '@/store'
 import { observer } from 'mobx-react'
 import { MdAdd } from 'react-icons/md'
@@ -12,6 +12,23 @@ export const ImageResource = observer(({ image, index }: ImageResourceProps) => 
     const store = React.useContext(StoreContext)
     const ref = React.useRef<HTMLImageElement>(null)
     const [resolution, setResolution] = React.useState({ w: 0, h: 0 })
+    const [blobUrl, setBlobUrl] = useState(image)
+    useEffect(() => {
+        const convertImageToBlob = async () => {
+            if (!image.startsWith('blob:')) {
+                try {
+                    const response = await fetch(image)
+                    const blob = await response.blob()
+                    const newBlobUrl = URL.createObjectURL(blob)
+                    setBlobUrl(newBlobUrl)
+                } catch (error) {
+                    console.error('Error fetching the image:', error)
+                }
+            }
+        }
+        convertImageToBlob()
+    }, [image])
+
 
     return (
         <div className="rounded-lg overflow-hidden items-center bg-slate-800 m-[15px] flex flex-col relative">
@@ -34,7 +51,7 @@ export const ImageResource = observer(({ image, index }: ImageResourceProps) => 
                 crossOrigin="anonymous"
                 ref={ref}
                 className="max-h-[100px] max-w-[150px]"
-                src={image}
+                src={blobUrl}
                 height={200}
                 width={200}
                 id={`image-${index}`}
