@@ -6,7 +6,7 @@ import { Element } from '../entity/Element'
 
 export const ElementsPanel = observer((_props: {}) => {
     const store = useContext(StoreContext)
-    const [draggedIndex, setDraggedIndex] = useState(null)
+    const [draggedIndex, setDraggedIndex] = useState(-1)
 
     const handleDragStart = (index) => {
         setDraggedIndex(index)
@@ -24,7 +24,7 @@ export const ElementsPanel = observer((_props: {}) => {
     }
 
     const handleDragEnd = () => {
-        setDraggedIndex(null)
+        setDraggedIndex(-1)
     }
 
     return (
