@@ -8,7 +8,7 @@
 * Flexlayout-react - UI架子
 
 ## 效果截图
-![demo image](vc.png?v=1)
+![demo image](vc.png?v=2)
 
 ## 体验地址
 [点击查看 https://vc.bgwa.cn](https://vc.bgwa.cn)
@@ -18,7 +18,6 @@
 * 支持更多动画
 * 接入AI能力
 * 完善UE
-* 视频时间轴优化
 * Echart支持
 * 微信登录
 
