@@ -48,17 +48,17 @@ export const SeekPlayer = observer((_props: SeekPlayerProps) => {
     const formattedMaxTime = formatTimeToMinSecMili(store.maxTime)
     return (
         <div className="seek-player flex flex-col secondary-text-color">
-            <div className="flex flex-row items-center px-2">
+            <div className="flex flex-row items-center bg-slate-100">
                 <button
-                    className="w-[80px] rounded  px-2 py-2"
+                    className="w-[50px] rounded  px-2"
                     onClick={() => {
                         store.setPlaying(!store.playing)
                     }}
                 >
-                    <Icon size="40"></Icon>
+                    <Icon size="30"></Icon>
                 </button>
                 <span className="font-mono">{formattedTime}</span>
-                <div className="w-[1px] h-[25px] bg-slate-300 mx-[10px]"></div>
+                <div className="w-[1px] h-[20px] bg-slate-200 mx-[10px]"></div>
                 <span className="font-mono">{formattedMaxTime}</span>
             </div>
             <ScaleRangeInput
@@ -67,7 +67,7 @@ export const SeekPlayer = observer((_props: SeekPlayerProps) => {
                 onChange={(value) => {
                     store.handleSeek(value)
                 }}
-                height={80}
+                height={60}
                 markings={MARKINGS}
                 backgroundColor="#ffffff"
             />

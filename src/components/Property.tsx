@@ -9,6 +9,7 @@ import VideoProperty from './properties/VideoProperty'
 import ImageProperty from './properties/ImageProperty'
 import AudioProperty from './properties/AudioProperty'
 
+
 // Property 组件用于选择合适的子组件来渲染
 export const Property = observer((props: any) => {
     const formRef = useRef()

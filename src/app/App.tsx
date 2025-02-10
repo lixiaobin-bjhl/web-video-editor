@@ -74,7 +74,7 @@ var json: IJsonModel = {
                                 children: [
                                     {
                                         type: 'tab',
-                                        name: '编辑区',
+                                        name: '主控台',
                                         component: 'mainCanvas',
                                     }
                                 ]
@@ -85,7 +85,7 @@ var json: IJsonModel = {
                                 children: [
                                     {
                                         type: 'tab',
-                                        name: '属性区',
+                                        name: '属性',
                                         component: 'property',
                                     }
                                 ]

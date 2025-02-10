@@ -56,7 +56,7 @@ export const ScaleRangeInput: React.FC<ScaleRangeInputProps> = (props) => {
                     ctx.beginPath()
                     for (let i = 0; i <= max; i += marking.interval) {
                         const x = (i / max) * canvas.width
-                        const startY = 25 // 从顶部主轴线开始
+                        const startY = 10 // 从顶部主轴线开始
                         const endY = startY + marking.size // 向下延伸
 
                         ctx.moveTo(x, startY)
@@ -72,7 +72,7 @@ export const ScaleRangeInput: React.FC<ScaleRangeInputProps> = (props) => {
                             const x = (i / max) * canvas.width
                             const timeText = formatTime(i)
                             // 文字位置调整到刻度下方
-                            ctx.fillText(timeText, x, 65)
+                            ctx.fillText(timeText, x, 45)
                         }
                     }
                 })

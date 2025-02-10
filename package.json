@@ -16,6 +16,7 @@
     "dependencies": {
         "@ffmpeg/ffmpeg": "^0.12.6",
         "@ffmpeg/util": "^0.12.1",
+        "@hello-pangea/dnd": "^18.0.1",
         "@types/fabric": "^5.3.3",
         "@types/node": "20.4.0",
         "@types/react": "18.2.14",
